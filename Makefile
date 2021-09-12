@@ -7,6 +7,6 @@ prettier:
 	bundle exec rubocop -A
 
 simple_demo:
-	echo "" | bin/invoicing_system.rb
+	echo "5 Watermelons\n8 Pineapples\n3 Rockmelons" | bin/invoicing_system.rb
 
 build: prettier test simple_demo
