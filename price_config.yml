@@ -1,0 +1,21 @@
+---
+Watermelons:
+- :count: 3
+  :price_in_cents: 699
+- :count: 5
+  :price_in_cents: 899
+Pineapples:
+- :count: 2
+  :price_in_cents: 995
+- :count: 5
+  :price_in_cents: 1695
+- :count: 8
+  :price_in_cents: 2495
+Rockmelons:
+- :count: 3
+  :price_in_cents: 595
+- :count: 5
+  :price_in_cents: 995
+- :count: 9
+  :price_in_cents: 1699
+...

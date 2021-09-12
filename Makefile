@@ -6,5 +6,7 @@ test:
 prettier:
 	bundle exec rubocop -A
 
-build: prettier test
+simple_demo:
+	echo "" | bin/invoicing_system.rb
 
+build: prettier test simple_demo
