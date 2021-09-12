@@ -14,4 +14,4 @@ loop do
 end
 
 supplier = Supplier.new(YAML.load_file(File.join(__dir__, "..", "price_config.yml")))
-puts supplier.invoice(customer_order_input)
+puts supplier.invoice(customer_order_input.join("\n"))

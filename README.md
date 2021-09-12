@@ -19,7 +19,7 @@ cd ..
 tar -czvf fruits_invoice_system.tar.gz ./fruits_invoice_system/
 
 # extract the code
-tar -xzvf invoicing_system_a_beginning.tar.gz
+tar -xzvf fruits_invoice_system.tar.gz
 
 ## Original Instruction
 

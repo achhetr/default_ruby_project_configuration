@@ -19,6 +19,9 @@ Style/EmptyMethod:
   Description: Put empty method definitions on a single line.
   Enabled: false
 
+RSpec/ExampleLength:
+  Enabled: false
+  
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
@@ -33,3 +36,4 @@ Style/TrailingCommaInArguments:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
