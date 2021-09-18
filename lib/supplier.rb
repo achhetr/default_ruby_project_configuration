@@ -11,7 +11,7 @@ class Supplier
     order = Order.new(customer_order_input)
     invoice = Invoice.new
     order.line_items.each do |line_item|
-      invoice.add_order(@store.pack(line_item))
+      invoice.add_order(@store.packs(line_item))
     end
     invoice.print_format
   end

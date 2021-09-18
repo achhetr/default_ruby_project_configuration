@@ -17,9 +17,24 @@ describe Order do
     order = described_class.new(customer_order_input)
     expect(order.line_items).to eq(
       [
-        { product: "Watermelons", quantity: 10 },
-        { product: "Pineapples", quantity: 14 },
-        { product: "Rockmelons", quantity: 13 },
+        {
+          product: "Watermelons",
+          quantity: 10,
+          total_price_in_cents: 0,
+          packs_order: {},
+        },
+        {
+          product: "Pineapples",
+          quantity: 14,
+          total_price_in_cents: 0,
+          packs_order: {},
+        },
+        {
+          product: "Rockmelons",
+          quantity: 13,
+          total_price_in_cents: 0,
+          packs_order: {},
+        },
       ],
     )
   end

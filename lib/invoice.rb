@@ -9,10 +9,15 @@ class Invoice
 
   def print_format
     total_cents = 0
-    output = []
-    @items.map do |item|
+    output = [format_header]
+
+    output << "Orders Empty\n" if @items.empty?
+
+    @items.each do |item|
       output << format_item(item)
-      total_cents += item[:price_in_cents]
+      item[:packs_order].each do |pack, order|
+        output << format_packs(pack, order)
+      end
     end
     output << "-----------------------------"
     output << format("TOTAL %23s", in_dollars(total_cents))
@@ -25,16 +30,21 @@ class Invoice
     format("$%0.2f", value_in_cents / 100.0)
   end
 
+  def format_header
+    "Fruit Invoice System\n\n"
+  end
+
   def format_item(item)
-    [
-      format(
-        "%<count>d %-18<product>s %8<amount>s",
-        count: item[:quantity], product: item[:product], amount: in_dollars(item[:price_in_cents]),
-      ),
-      format(
-        "  - %<pack_count>s x %<pack>s @ %<pack_price>s",
-        pack_count: 1, pack: item[:product_item], pack_price: in_dollars(item[:price_in_cents]),
-      ),
-    ].join("\n")
+    format(
+      "%<count>d %-18<product>s %8<amount>s\n",
+      count: item[:quantity], product: item[:product], amount: in_dollars(item[:total_price_in_cents]),
+    )
+  end
+
+  def format_packs(pack, order)
+    format(
+      "  - %<pack_count>s x %<pack>s @ %<pack_price>s\n",
+      pack_count: order[:quantity], pack: pack, pack_price: in_dollars(order[:price_in_cents]),
+    )
   end
 end

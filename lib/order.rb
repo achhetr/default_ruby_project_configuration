@@ -14,6 +14,8 @@ class Order
       {
         product: product,
         quantity: Integer(quantity),
+        total_price_in_cents: 0,
+        packs_order: {},
       }
     end
   end
