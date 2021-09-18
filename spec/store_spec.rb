@@ -20,33 +20,33 @@ describe Store do
     }
   end
 
-  skip "can pack 3 watermelons" do
+  it "can pack 3 watermelons" do
     store = described_class.new(inventory)
     expect(store.packs(product: "Watermelons",
-                       quantity: 3,)).to eq({ product: "Watermelons", quantity: 1, total_price_in_cents: 699,
+                       quantity: 3,)).to eq({ product: "Watermelons", quantity: 3, total_price_in_cents: 699,
                                               packs_order:
                                                 { "3 pack": { pack: 3, price_in_cents: 699, quantity: 1 } }, })
   end
 
-  skip "can pack 5 watermelons" do
+  it "can pack 5 watermelons" do
     store = described_class.new(inventory)
     expect(store.packs(product: "Watermelons",
-                       quantity: 5,)).to eq({ product: "Watermelons", quantity: 1, total_price_in_cents: 899,
+                       quantity: 5,)).to eq({ product: "Watermelons", quantity: 5, total_price_in_cents: 899,
                                               packs_order:
                                                 { "5 pack": { pack: 5, price_in_cents: 899, quantity: 1 } }, })
   end
 
-  skip "raises an error if the quanity cannot be fulfilled exactly" do
+  it "raises an error if the quanity cannot be fulfilled exactly" do
     store = described_class.new(inventory)
     expect do
-      store.pack(product: "Watermelons", quantity: 4)
+      store.packs(product: "Watermelons", quantity: 4)
     end.to raise_error(ArgumentError, "no product item to fulfill \"Watermelons\", 4 precisely")
   end
 
-  skip "raises an error if trying to pack items skip does not have like Zucchinis" do
+  it "raises an error if trying to pack items skip does not have like Zucchinis" do
     store = described_class.new(inventory)
     expect do
-      store.pack(product: "Zucchinis", quantity: 5)
+      store.packs(product: "Zucchinis", quantity: 5)
     end.to raise_error(ArgumentError, "no product \"Zucchinis\"")
   end
 end
