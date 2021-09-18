@@ -28,12 +28,30 @@ describe Store do
                                                 { "3 pack": { pack: 3, price_in_cents: 699, quantity: 1 } }, })
   end
 
-  it "can pack 5 watermelons" do
+  it "can pack 10 watermelons" do
     store = described_class.new(inventory)
     expect(store.packs(product: "Watermelons",
-                       quantity: 5,)).to eq({ product: "Watermelons", quantity: 5, total_price_in_cents: 899,
+                       quantity: 10,)).to eq({ product: "Watermelons", quantity: 10, total_price_in_cents: 1798,
+                                               packs_order:
+                                                { "5 pack": { pack: 5, price_in_cents: 899, quantity: 2 } }, })
+  end
+
+  it "can pack 8 watermelons" do
+    store = described_class.new(inventory)
+    expect(store.packs(product: "Watermelons",
+                       quantity: 8,)).to eq({ product: "Watermelons", quantity: 8, total_price_in_cents: 1598,
                                               packs_order:
-                                                { "5 pack": { pack: 5, price_in_cents: 899, quantity: 1 } }, })
+                                                { "5 pack": { pack: 5, price_in_cents: 899, quantity: 1 },
+                                                  "3 pack": { pack: 3, price_in_cents: 699, quantity: 1 }, }, })
+  end
+
+  it "can pack 10000 watermelons" do
+    store = described_class.new(inventory)
+    expect(store.packs(product: "Watermelons",
+                       quantity: 10_000,)).to eq({ product: "Watermelons", quantity: 10_000,
+                                                   total_price_in_cents: 1_798_000,
+                                                   packs_order:
+                                                { "5 pack": { pack: 5, price_in_cents: 899, quantity: 2000 } }, })
   end
 
   it "raises an error if the quanity cannot be fulfilled exactly" do

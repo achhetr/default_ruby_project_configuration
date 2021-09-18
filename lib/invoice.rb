@@ -10,11 +10,12 @@ class Invoice
   def print_format
     total_cents = 0
     output = [format_header]
-
+    output << "-----------------------------"
     output << "Orders Empty\n" if @items.empty?
 
     @items.each do |item|
       output << format_item(item)
+      total_cents += item[:total_price_in_cents]
       item[:packs_order].each do |pack, order|
         output << format_packs(pack, order)
       end
