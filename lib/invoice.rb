@@ -11,7 +11,7 @@ class Invoice
     total_cents = 0
     output = [format_header]
     output << "-----------------------------"
-    output << "Orders Empty\n" if @items.empty?
+    output << "Empty Order" if @items.empty?
 
     @items.each do |item|
       output << format_item(item)
@@ -32,19 +32,19 @@ class Invoice
   end
 
   def format_header
-    "Fruit Invoice System\n\n"
+    "Fruit Invoice System"
   end
 
   def format_item(item)
     format(
-      "%<count>d %-18<product>s %8<amount>s\n",
+      "%<count>d %-18<product>s %8<amount>s",
       count: item[:quantity], product: item[:product], amount: in_dollars(item[:total_price_in_cents]),
     )
   end
 
   def format_packs(pack, order)
     format(
-      "  - %<pack_count>s x %<pack>s @ %<pack_price>s\n",
+      "  - %<pack_count>s x %<pack>s @ %<pack_price>s",
       pack_count: order[:quantity], pack: pack, pack_price: in_dollars(order[:price_in_cents]),
     )
   end
